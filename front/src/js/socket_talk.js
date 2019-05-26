@@ -10,6 +10,5 @@ send_button.addEventListener('click', function (e) {
 let resp_div = document.getElementById('resp');
 sock.onmessage = function (e) {
     resp_div.innerText = e.data;
-    sock.close();
 };
 
