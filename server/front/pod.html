@@ -8,10 +8,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 </head>
 <body>
-    <ul id="messages"></ul>
-    <form>
-        <input id="input_msg" autocomplete="off" /><button>Send</button>
-    </form>
+    <div>
+        <form name="chat">
+            <input type="text" name="content">
+            <button name="submit">Send</button>
+        </form>
+        <hr>
+        <ul id="message"></ul>
+    </div>
     <script src="/static/js/socket_talk.js" type="text/javascript"></script>
 </body>
 </html>
