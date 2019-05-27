@@ -1,10 +1,11 @@
-FROM python:3.7-slim
+FROM node:8.16.0-jessie-slim
 
 RUN mkdir /code
 WORKDIR /code
 
 # Install python dependencies
-COPY ./requirements.txt /code/
-RUN pip install -r requirements.txt
+COPY ./package.json /code/
+COPY ./package-lock.json /code/
+RUN npm install
 
-CMD ["python", "server.py"]
+CMD ["npm", "start"]

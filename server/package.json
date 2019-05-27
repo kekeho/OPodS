@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kekeho/OPodS.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Kekeho (Hiroki Takemura)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kekeho/OPodS/issues"
+  },
+  "homepage": "https://github.com/kekeho/OPodS#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socketio": "^1.0.0"
+  }
+}
