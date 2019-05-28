@@ -1,16 +1,7 @@
-const express = require('express');
-const app = express();
-
-const http = require('http').Server(app);
+const http = require('http').createServer();
 const io = require('socket.io')(http);
 
 const PORT = 8765;
-app.use('/static', express.static('front/src'));
-
-
-app.get('/pod/*', function(request, response) {
-    response.sendFile(__dirname + '/front/pod.html');
-});
 
 
 http.listen(PORT, '0.0.0.0', function() {

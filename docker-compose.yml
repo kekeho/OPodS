@@ -6,7 +6,7 @@ services:
     ports:
       - 6379:6379
   
-  server:
+  pod_server:
     build: server
     volumes:
       - ./server:/code:ro
@@ -15,3 +15,10 @@ services:
     
     depends_on:
       - kvs
+  
+  front_server:
+    build: front
+    volumes:
+      - ./front:/code:ro
+    ports:
+      - 8080:80

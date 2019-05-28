@@ -1,5 +1,6 @@
 const pod_id = location.pathname.split('/').slice(-1)[0];
-const socket = io();
+const socketio_address = 'http://' + location.hostname + ":8765";
+const socket = io(socketio_address);
 
 // Join pod
 socket.emit('join', {'pod_id': pod_id, 'name': 'hiroki'});
