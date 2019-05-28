@@ -26,7 +26,7 @@ io.on('connection', function (socket) {
         console.log('new join:');
         socket.join(msg.pod_id);
         socket.emit('join', 'SUCCESS');
-        io.sockets.in(msg.pod_id).emit("chat", "new user: " + msg.name);
+        io.sockets.in(msg.pod_id).emit("info", "new user: " + msg.name);
         room_name = msg.pod_id;
     });
 

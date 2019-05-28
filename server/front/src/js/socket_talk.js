@@ -1,4 +1,4 @@
-const pod_id = location.pathname.split('/').slice(-1)[0]
+const pod_id = location.pathname.split('/').slice(-1)[0];
 const socket = io();
 
 // Join pod
@@ -8,18 +8,25 @@ socket.on('join', function(msg){
 });
 
 
-let message = document.getElementById('message')
+let timeline = document.getElementById('timeline');
 let form = document.forms.chat;
 
 form.submit.addEventListener('click', function(e) {
+    const message = form.content.value;
     e.preventDefault();
-    socket.emit('chat', form.content.value);
+    socket.emit('chat', message);
     form.content.value = '';
+
+    // add sent text to timeline
+    let li = document.createElement('li');
+    li.textContent = message;
+    li.className = 'mymessage';
+    timeline.appendChild(li);
 });
 
 
 socket.on('chat', function(msg) {
     let li = document.createElement('li');
     li.textContent = msg;
-    message.appendChild(li);
+    timeline.appendChild(li);
 });
