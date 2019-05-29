@@ -1,6 +1,5 @@
 body {
     background-color: white;
-    color: black;
 }
 
 nav#mainNav {
@@ -38,7 +37,12 @@ li span.name {
 
 li span.content {
     background: rgb(241,241,241);
+    color: black;
     padding: 0.3rem 0.8rem;
+}
+
+li span.name {
+    color: black;
 }
 
 .container.chat-container {
@@ -62,3 +66,7 @@ div.row.login {
     align-items: center;
 }
 
+h1.brand-heading {
+    font-size: 5rem !important;
+    background-color: rgb(18, 18, 18);
+}

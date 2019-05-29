@@ -10,10 +10,11 @@ form.submit.addEventListener('click', function(e) {
         password: form.password.value
     };
     socket.emit('create_pod', message);
-});
+}, {passive: false});
 
 
 socket.on('create_pod_message', function(msg) {
     let result_e = document.getElementById('result');
-    result_e.innerText = msg.content + msg.new_pod_id;
+    result_e.innerHTML = 'New Pod is generated.<br />Join Pod: <a href="/pod/' + msg.new_pod_id + '">' + msg.new_pod_id +'</a>';
+    "New" + msg.new_pod_id;
 });

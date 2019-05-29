@@ -7,8 +7,8 @@ const PORT = 80;
 // Static dir
 app.use('/static', express.static('static'));
 
-app.get('/create', function(request, response) {
-    response.sendFile(__dirname + '/create.html');
+app.get('/', function(request, response) {
+    response.sendFile(__dirname + '/index.html');
 });
 
 app.get('/pod/*', function(request, response) {
