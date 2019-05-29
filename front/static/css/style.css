@@ -1,0 +1,64 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+nav#mainNav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+section.content-section {
+    background-color: black;
+}
+
+footer {
+    background-color: black;
+}
+
+nav#mainNav.navbar-black {
+    background-color: black;
+}
+
+.chat ul li.mymessage {
+    text-align: right;
+}
+
+li span.name {
+    margin: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    background-color: rgb(231,254,255);
+    border-radius: 1rem;
+    font-size: 0.7rem;
+}
+
+.list-group-item {
+    border: none;
+}
+
+li span.content {
+    background: rgb(241,241,241);
+    padding: 0.3rem 0.8rem;
+}
+
+.container.chat-container {
+    height: max-content;
+
+}
+
+.container.chat-container .row .col.chat {
+    height: calc(100vh - 25vh - 2rem);
+    overflow: scroll;
+}
+
+.row.chat-input-row {
+    margin: 1rem;
+}
+
+div.row.login {
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    align-items: center;
+}
+

@@ -1,29 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>OPodS | Chat Pod</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>OPodS</title>
+    <!-- socket.io -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
-    <div class="login">
-        <form name="login">
-            <input type="text" name="name" placeholder="Set own name">
-            <input type="text" name="password" placeholder="Password">
-            <button name="submit">Join Pod</button>
-        </form>
-        <p id='login_message'></p>
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg navbar-black" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#">OPodS</a>
+            <button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive"
+                type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                value="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a
+                            class="nav-link active js-scroll-trigger" href="#about">Create New pod</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a
+                            class="nav-link js-scroll-trigger" href="#github">Github</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container chat-container">
+        <div class="row">
+            <div class="col chat">
+                <ul class="list-group" id="timeline"></ul>
+            </div>
+        </div>
+        <div class="row chat-input-row">
+            <form name="chat" hidden>
+                <input class="chat-message-input" id='chat-input-textbox' type="text" name="content">
+                <button name="submit">Send</button>
+            </form>
+        </div>
+        <div class="row login">
+            <div class="col">
+                <form name="login">
+                    <input type="text" name="name" placeholder="Set own name">
+                    <input type="text" name="password" placeholder="Password">
+                    <button name="submit">Join Pod</button>
+                </form>
+                <p id='login_message'></p>
+            </div>
+        </div>
     </div>
-    <div>
-        <form name="chat">
-            <input type="text" name="content">
-            <button name="submit">Send</button>
-        </form>
-        <hr>
-        <ul id="timeline"></ul>
-    </div>
+    <!-- chat script -->
     <script src="/static/js/socket_talk.js" type="text/javascript"></script>
+
+    <!-- bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="/static/js/grayscale.js"></script>
 </body>
+
 </html>
