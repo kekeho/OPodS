@@ -5,13 +5,18 @@ const socket = io(socketio_address);
 // Join pod
 let loginform = document.forms.login;
 loginform.submit.addEventListener('click', function(e) {
+    let login_msg = document.getElementById('login_message');
+    login_msg.innerText = '';
     const name = loginform.name.value;
     const password = loginform.password.value;
     e.preventDefault();
     socket.emit('join', {'pod_id': pod_id, 'name': name, 'password': password});
     socket.on('join', function(msg){
         if (msg != 'SUCCESS'){
-            window.alert('Something wrong.')
+            login_msg.innerText = 'Something wrong';
+        } else {
+            loginform.hidden = true;
+            login_msg.innerText = 'now you\'re in pod as ' + name;
         }
     });
 });
