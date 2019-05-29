@@ -8,8 +8,6 @@ services:
   
   pod_server:
     build: server
-    volumes:
-      - ./server:/code:ro
     ports:
       - 8765:8765
     

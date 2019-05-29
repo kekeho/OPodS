@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/kekeho/OPodS#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "redis": "^2.8.0",
     "socketio": "^1.0.0"
   }

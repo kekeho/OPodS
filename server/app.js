@@ -3,6 +3,9 @@ const io = require('socket.io')(http);
 
 const redis_client = require('redis').createClient(6379, 'kvs');
 
+const bcrypt = require('bcrypt');
+const bcrypt_salt_rounds = 12;
+
 const PORT = 8765;
 
 
@@ -19,8 +22,9 @@ io.on('connection', function (socket) {
     socket.on('create_pod', function(msg) {
         const pod_id = msg.pod_id;
         const password = msg.password;
+        const hash = bcrypt.hashSync(password, bcrypt_salt_rounds);
 
-        redis_client.setnx(pod_id, password, function(err, res) {
+        redis_client.setnx(pod_id, hash, function(err, res) {
             if (res){
                 const msg = {
                     status: 'success',

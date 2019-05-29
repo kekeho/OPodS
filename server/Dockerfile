@@ -9,4 +9,6 @@ COPY ./package-lock.json /code/
 RUN npm install
 RUN npm audit fix
 
+COPY . /code
+
 CMD ["npm", "start"]
