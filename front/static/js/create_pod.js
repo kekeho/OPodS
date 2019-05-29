@@ -15,9 +15,9 @@ form.submit.addEventListener('click', function(e) {
 
 socket.on('create_pod_message', function(msg) {
     let result_e = document.getElementById('result');
-    if (result_e.status == 'error'){
-        result_e.innerHTML = 'New Pod is generated.<br />Join Pod: <a href="/pod/' + msg.new_pod_id + '">' + msg.new_pod_id +'</a>';
+    if (msg.status == 'error'){
+        result_e.innerText = 'Pod ID is already taken. retry with dfferent ID.';
     } else {
-        result_e.innerText = 'Pod ID is already taken. retry with dfferent ID.'
+        result_e.innerHTML = 'New Pod is generated.<br />Join Pod: <a href="/pod/' + msg.new_pod_id + '">' + msg.new_pod_id +'</a>';        
     }
 });
