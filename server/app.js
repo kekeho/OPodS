@@ -17,6 +17,7 @@ http.listen(PORT, '0.0.0.0', function() {
 let store = {};
 io.on('connection', function (socket) {
     let room_name = 'global';
+    let chat_name = '';
     console.log('new connection');
 
     socket.on('create_pod', function(msg) {
@@ -56,6 +57,7 @@ io.on('connection', function (socket) {
                 socket.emit('join', 'SUCCESS');
                 io.sockets.in(pod_id).emit("info", "new user: " + name);
                 room_name = pod_id;
+                chat_name = name;
             } else {
                 console.log('login blocked');
                 socket.emit('join', 'Something wrong.');
@@ -64,6 +66,10 @@ io.on('connection', function (socket) {
     });
 
     socket.on('chat', function(msg) {
-        socket.broadcast.to(room_name).emit('chat', msg);
+        const content = {
+            'text': msg,
+            'name': chat_name
+        };
+        socket.broadcast.to(room_name).emit('chat', content);
     });
 });

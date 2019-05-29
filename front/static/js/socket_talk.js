@@ -35,6 +35,6 @@ chatform.submit.addEventListener('click', function(e) {
 
 socket.on('chat', function(msg) {
     let li = document.createElement('li');
-    li.textContent = msg;
+    li.textContent = '[' + msg.name + '] ' + msg.text;
     timeline.appendChild(li);
 });
