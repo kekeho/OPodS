@@ -44,11 +44,23 @@ io.on('connection', function (socket) {
     });
 
     socket.on('join', function(msg) {
-        console.log('new join:');
-        socket.join(msg.pod_id);
-        socket.emit('join', 'SUCCESS');
-        io.sockets.in(msg.pod_id).emit("info", "new user: " + msg.name);
-        room_name = msg.pod_id;
+        const pod_id = msg.pod_id;
+        const name = msg.name;
+        const password = msg.password;
+
+        redis_client.get(pod_id, function(err, value) {
+            console.log(pod_id, name, password);
+            if (bcrypt.compareSync(password, value)){
+                console.log('login success');
+                socket.join(msg.pod_id);
+                socket.emit('join', 'SUCCESS');
+                io.sockets.in(msg.pod_id).emit("info", "new user: " + name);
+                room_name = msg.pod_id;
+            } else {
+                console.log('login blocked');
+                socket.emit('join', 'Something wrong.');
+            }
+        });
     });
 
     socket.on('chat', function(msg) {
