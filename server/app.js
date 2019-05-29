@@ -52,10 +52,10 @@ io.on('connection', function (socket) {
             console.log(pod_id, name, password);
             if (bcrypt.compareSync(password, value)){
                 console.log('login success');
-                socket.join(msg.pod_id);
+                socket.join(pod_id);
                 socket.emit('join', 'SUCCESS');
-                io.sockets.in(msg.pod_id).emit("info", "new user: " + name);
-                room_name = msg.pod_id;
+                io.sockets.in(pod_id).emit("info", "new user: " + name);
+                room_name = pod_id;
             } else {
                 console.log('login blocked');
                 socket.emit('join', 'Something wrong.');
