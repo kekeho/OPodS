@@ -16,7 +16,7 @@ http.listen(PORT, '0.0.0.0', function() {
 
 let store = {};
 io.on('connection', function (socket) {
-    let room_name = 'global';
+    let room_name = '';
     let chat_name = '';
     console.log('new connection');
 
@@ -51,11 +51,12 @@ io.on('connection', function (socket) {
 
         redis_client.get(pod_id, function(err, value) {
             console.log(pod_id, name, password);
+            // TODO: redisにキーがない場合の処理を書く
             if (bcrypt.compareSync(password, value)){
                 console.log('login success');
                 socket.join(pod_id);
                 socket.emit('join', 'SUCCESS');
-                io.sockets.in(pod_id).emit("info", "new user: " + name);
+                io.sockets.in(pod_id).emit("info", {'status': 'new_user', 'name': name});
                 room_name = pod_id;
                 chat_name = name;
             } else {
@@ -72,4 +73,33 @@ io.on('connection', function (socket) {
         };
         socket.broadcast.to(room_name).emit('chat', content);
     });
+
+
+    socket.on('disconnected', function() {
+        if (room_name !== ''){
+            io.sockets.in(pod_id).emit('info', {'status': 'out', 'name': name});
+        }
+    });
+
+    let before_time = null;
+    socket.on('check_alive', function(msg) {
+        now = new Date();
+        before_time = now.getTime() / 1000;
+    });
+
+    const loop = setInterval(function() {
+        if (room_name !== '') {
+            if (before_time === null) {
+                const now = new Date();
+                before_time = now.getTime() / 1000;  // get time (sec)
+            } else {
+                now = new Date();
+                if ((now.getTime() / 1000) - before_time > 5) {
+                    io.sockets.in(room_name).emit('info', {'status': 'out', 'name': chat_name});
+                    socket.disconnect();
+                    clearInterval(loop);
+                }
+            }
+        }        
+    }, 5500);
 });

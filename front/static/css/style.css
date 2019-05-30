@@ -47,7 +47,7 @@ li span.name {
 
 .container.chat-container {
     height: max-content;
-
+    margin: 1rem auto;
 }
 
 .container.chat-container .row .col.chat {
@@ -70,3 +70,26 @@ h1.brand-heading {
     font-size: 5rem !important;
     background-color: rgb(18, 18, 18);
 }
+
+
+li.info_new_user {
+    background: #f2f2f2;
+    color: #353535;
+    text-align: center;
+}
+
+li.info_new_user span {
+    background: transparent;
+}
+
+li.info_out_user {
+    background: #f2f2f2;
+    color: #353535;
+    text-align: center;
+}
+
+li.info_out_user span {
+    background: transparent;
+}
+
+
