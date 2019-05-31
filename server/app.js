@@ -51,8 +51,7 @@ io.on('connection', function (socket) {
 
         redis_client.get(pod_id, function(err, value) {
             console.log(pod_id, name, password);
-            // TODO: redisにキーがない場合の処理を書く
-            if (bcrypt.compareSync(password, value)){
+            if (value !== null && bcrypt.compareSync(password, value)){
                 console.log('login success');
                 socket.join(pod_id);
                 socket.emit('join', 'SUCCESS');

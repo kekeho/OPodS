@@ -92,4 +92,6 @@ li.info_out_user span {
     background: transparent;
 }
 
-
+p#login_message {
+    color: black;
+}
