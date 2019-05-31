@@ -18,7 +18,6 @@ let store = {};
 io.on('connection', function (socket) {
     let room_name = '';
     let chat_name = '';
-    console.log('new connection');
 
     socket.on('create_pod', function(msg) {
         const pod_id = msg.pod_id;
@@ -50,16 +49,13 @@ io.on('connection', function (socket) {
         const password = msg.password;
 
         redis_client.get(pod_id, function(err, value) {
-            console.log(pod_id, name, password);
             if (value !== null && bcrypt.compareSync(password, value)){
-                console.log('login success');
                 socket.join(pod_id);
                 socket.emit('join', 'SUCCESS');
                 io.sockets.in(pod_id).emit("info", {'status': 'new_user', 'name': name});
                 room_name = pod_id;
                 chat_name = name;
             } else {
-                console.log('login blocked');
                 socket.emit('join', 'Something wrong.');
             }
         });

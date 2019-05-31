@@ -107,6 +107,5 @@ socket.on('info', function(msg) {
 
 // send alive signal
 setInterval(function() {
-    console.log('sending');
     socket.emit('check_alive', 'alive');
 }, 3000);
